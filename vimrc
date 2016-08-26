@@ -108,7 +108,7 @@ nnoremap <c-b> :CtrlPBuffer<cr>
 let g:DoxygenToolkit_commentType = "C++"
 let g:DoxygenToolkit_compactDoc = "yes"
 let g:DoxygenToolkit_authorName = "Ben Altieri"
-let g:DoxygenToolkit_licenseTag = "Copyright © 2016 Berkeley Applied Analytics, LLC. All rights reserved."
+let g:DoxygenToolkit_licenseTag = ""
 let g:DoxygenToolkit_briefTag_pre = "\\brief " 
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_paramTag_pre = "\\param " 
