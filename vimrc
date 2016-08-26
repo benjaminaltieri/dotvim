@@ -15,21 +15,24 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
 " Navigation and Code Assistance
+"Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'DoxygenToolkit.vim'
+Plugin 'bling/vim-airline'
 
 " Python
 "Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
-Plugin 'nvie/vim-flake8'
+"Plugin 'klen/python-mode'
+""Plugin 'nvie/vim-flake8'
+Plugin 'heavenshell/vim-pydocstring'
 
 " Cython
 Plugin 'tshirtman/vim-cython'
 
 " cmake
-Plugin 'jalcine/cmake.vim'
+"Plugin 'jalcine/cmake.vim'
 
 " Color Schemes
 Plugin 'tomasr/molokai'
@@ -39,10 +42,21 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " show existing tab with 4 spaces width
 set tabstop=4
+" Needed by vim-pydocstring
+set softtabstop=4
 " when indenting with '>', use 4 spaces width
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+
+" Prefer ability to use backspace freely
+set backspace=indent,eol,start
+
+" Special Command to remove whitespace based on filetype
+autocmd FileType c,cpp,java,php,python,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Special Command for py-docstring
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " Vim UI
 syntax on
@@ -62,6 +76,9 @@ nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
+
+" Remap pydocstring to allow for the below
+nmap <silent> <C-_> <Plug>(pydocstring)
 
 " Split navigation shortcuts
 nnoremap <C-J> <C-W><C-J>
