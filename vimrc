@@ -15,12 +15,16 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
 " Navigation and Code Assistance
-"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'jakedouglas/exuberant-ctags'
+"Plugin 'taglist.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+"Plugin 'Valloric/YouCompleteMe'
 "Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'bling/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " Python
 "Plugin 'davidhalter/jedi-vim'
@@ -66,16 +70,17 @@ silent! colorscheme molokai
 let g:load_doxygen_syntax = 1
 
 au Syntax py, pyx, pxd
-        \ if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)
-        \       || (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)
-        \   | runtime! syntax/doxygen.vim
-        \ | endif
+    \ if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)
+    \       || (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)
+    \   | runtime! syntax/doxygen.vim
+    \ | endif
 
-" Disable arrow keys, kibishii!
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
+" Disable arrow keys, kibishii! And remap to scrolling *gasp*
+set nowrap
+nnoremap <up> <C-Y>
+nnoremap <down> <C-E>
+nnoremap <left> zh
+nnoremap <right> zl
 
 " Remap pydocstring to allow for the below
 nmap <silent> <C-_> <Plug>(pydocstring)
@@ -96,11 +101,8 @@ let g:NERDTreeWinSize = 40
 let g:NERDTreeMinimalUI = 1
 
 " Explorer Mappings
-nnoremap <f1> :BufExplorer<cr>
-nnoremap <f2> :NERDTreeToggle<cr>
-nnoremap <f3> :TagbarToggle<cr>
-nnoremap <f4> :NERDTreeFind<cr>
-nnoremap <f5> :e %:h<cr>
+nnoremap <C-n> :NERDTreeToggle<cr>
+nnoremap <C-m> :NERDTreeMirror<cr>
 nnoremap <c-f> :CtrlP<cr>
 nnoremap <c-b> :CtrlPBuffer<cr>
 
