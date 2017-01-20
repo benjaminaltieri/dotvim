@@ -15,16 +15,19 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
 " Navigation and Code Assistance
-"Plugin 'jakedouglas/exuberant-ctags'
-"Plugin 'taglist.vim'
+Plugin 'jakedouglas/exuberant-ctags'
+Plugin 'taglist.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'd11wtq/ctrlp_bdelete.vim'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 "Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'godlygeek/tabular'
 
 " Python
 "Plugin 'davidhalter/jedi-vim'
@@ -37,6 +40,9 @@ Plugin 'tshirtman/vim-cython'
 
 " cmake
 "Plugin 'jalcine/cmake.vim'
+
+" syntax
+Plugin 'solarnz/thrift.vim'
 
 " Color Schemes
 Plugin 'tomasr/molokai'
@@ -105,6 +111,9 @@ nnoremap <C-n> :NERDTreeToggle<cr>
 nnoremap <C-m> :NERDTreeMirror<cr>
 nnoremap <c-f> :CtrlP<cr>
 nnoremap <c-b> :CtrlPBuffer<cr>
+
+" CtrlP BDelete needs this
+call ctrlp_bdelete#init()
 
 " DoxygenToolkit.vim Configuration
 let g:DoxygenToolkit_commentType = "C++"
