@@ -97,6 +97,10 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Map inc/dec to Alt because I use Tmux
+:nnoremap <A-a> <C-a>
+:nnoremap <A-x> <C-x>
+
 " Set split behavior
 set splitbelow
 set splitright
