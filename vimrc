@@ -21,19 +21,24 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'd11wtq/ctrlp_bdelete.vim'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'Valloric/YouCompleteMe'
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'godlygeek/tabular'
+Plugin 'janko-m/vim-test'
+
+" His holyness tpope
+Plugin 'tpope/vim-fugitive'
 
 " Python
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
 "Plugin 'nvie/vim-flake8'
 "Plugin 'heavenshell/vim-pydocstring'
+Plugin 'jmcantrell/vim-virtualenv'
 
 " Cython
 Plugin 'tshirtman/vim-cython'
@@ -72,6 +77,9 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 syntax on
 
 silent! colorscheme molokai
+
+" Pymode Settings (python-mode)
+let g:pymode_lint_ignore = "W503,E402"
 
 let g:load_doxygen_syntax = 1
 
