@@ -32,6 +32,7 @@ Plugin 'janko-m/vim-test'
 
 " His holyness tpope
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
 
 " Python
 "Plugin 'davidhalter/jedi-vim'
@@ -45,6 +46,7 @@ Plugin 'tshirtman/vim-cython'
 
 " cmake
 "Plugin 'jalcine/cmake.vim'
+Plugin 'vhdirk/vim-cmake'
 
 " syntax
 Plugin 'solarnz/thrift.vim'
