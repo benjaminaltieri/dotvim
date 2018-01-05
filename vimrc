@@ -74,6 +74,9 @@ set backspace=indent,eol,start
 autocmd FileType c,cpp,java,php,python,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Special Command for py-docstring
+autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+
+" Special Command for py-docstring
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " Vim UI
@@ -120,6 +123,7 @@ set splitright
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeUpdateOnWrite = 0
 
 " Explorer Mappings
 nnoremap <C-n> :NERDTreeToggle<cr>
