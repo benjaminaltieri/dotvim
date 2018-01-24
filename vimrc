@@ -98,7 +98,7 @@ let g:pymode_lint_ignore = "W503,E402"
 
 let g:load_doxygen_syntax = 1
 
-au Syntax py, pyx, pxd
+au Syntax py, pyx, pxd, c, cpp, objc 
     \ if (exists('b:load_doxygen_syntax') && b:load_doxygen_syntax)
     \       || (exists('g:load_doxygen_syntax') && g:load_doxygen_syntax)
     \   | runtime! syntax/doxygen.vim
@@ -163,17 +163,21 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 call ctrlp_bdelete#init()
 
 " DoxygenToolkit.vim Configuration
-let g:DoxygenToolkit_commentType = "C++"
 let g:DoxygenToolkit_compactDoc = "yes"
 let g:DoxygenToolkit_authorName = "Ben Altieri"
-let g:DoxygenToolkit_licenseTag = ""
+let s:swiftlicense = "\<enter>Copyright (C) 2018 Swift Navigation Inc. \<enter>"
+let s:swiftlicense = s:swiftlicense . "Contact: Swift Navigation <dev@swiftnav.com>\<enter>\<enter>"
+let s:swiftlicense = s:swiftlicense . "This source is subject to the license found in the file 'LICENSE' which must\<enter>"
+let s:swiftlicense = s:swiftlicense . " be distributed together with this source. All other rights reserved.\<enter>\<enter>"
+let s:swiftlicense = s:swiftlicense . "THIS CODE AND INFORMATION IS PROVIDED \"AS IS\" WITHOUT WARRANTY OF ANY KIND,\<enter>"
+let s:swiftlicense = s:swiftlicense . "EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED\<enter>"
+let s:swiftlicense = s:swiftlicense . "WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE."
+let g:DoxygenToolkit_licenseTag = s:swiftlicense
 let g:DoxygenToolkit_briefTag_pre = "\\brief " 
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_paramTag_pre = "\\param " 
 let g:DoxygenToolkit_paramTag_post = ": "
 let g:DoxygenToolkit_returnTag = "\\return " 
-let g:DoxygenToolkit_blockHeader="---------------------------------------"
-let g:DoxygenToolkit_blockFooter="---------------------------------------" 
 let g:DoxygenToolkit_fileTag = "\\file "
 let g:DoxygenToolkit_authorTag = "\\author "
 let g:DoxygenToolkit_dateTag = "\\date "
