@@ -25,7 +25,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'DoxygenToolkit.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'godlygeek/tabular'
@@ -55,6 +55,10 @@ Plugin 'solarnz/thrift.vim'
 " Color Schemes
 Plugin 'tomasr/molokai'
 
+" Haskell
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'Shougo/vimproc'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -78,6 +82,11 @@ autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Special Command for py-docstring
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+" Haskell again
+"let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/.local/bin")
+"nnoremap <Leader>ht :GhcModType<cr>
+"nnoremap <Leader>htc :GhcModTypeClear<cr>
 
 " Vim UI
 syntax on
@@ -127,9 +136,25 @@ let g:NERDTreeUpdateOnWrite = 0
 
 " Explorer Mappings
 nnoremap <C-n> :NERDTreeToggle<cr>
-nnoremap <C-m> :NERDTreeMirror<cr>
+"nnoremap <C-m> :NERDTreeMirror<cr>
 nnoremap <c-f> :CtrlP<cr>
 nnoremap <c-b> :CtrlPBuffer<cr>
+
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+
+" Some handy grep shortcuts
+:nnoremap K :grep <cword> %:p:h/*<CR>
+:nnoremap gr :grep -R <cword> *<CR>
+:nnoremap GR :grep -R <cword> %:p:h/../*<CR>
+
+" ClangFormat Config
+let g:clang_format#detect_style_file = 1
+let g:clang_format#enable_fallback_style = 0
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
 " CtrlP BDelete needs this
 call ctrlp_bdelete#init()
