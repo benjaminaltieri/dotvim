@@ -80,8 +80,8 @@ set backspace=indent,eol,start
 " Special Command to remove whitespace based on filetype
 autocmd FileType c,cpp,java,php,python,cmake autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" Special Command for py-docstring
-autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+" Swift 2-space style indents
+autocmd FileType c,cpp setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 
 " Special Command for py-docstring
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
