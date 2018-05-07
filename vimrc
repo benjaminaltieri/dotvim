@@ -30,6 +30,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 "Plugin 'rdnetto/YCM-Generator'
 Plugin 'godlygeek/tabular'
 Plugin 'janko-m/vim-test'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 " His holyness tpope
 Plugin 'tpope/vim-fugitive'
@@ -55,10 +57,6 @@ Plugin 'solarnz/thrift.vim'
 " Color Schemes
 Plugin 'tomasr/molokai'
 
-" Haskell
-"Plugin 'eagletmt/ghcmod-vim'
-"Plugin 'Shougo/vimproc'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -83,15 +81,12 @@ autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " Special Command for py-docstring
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
-" Haskell again
-"let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/.local/bin")
-"nnoremap <Leader>ht :GhcModType<cr>
-"nnoremap <Leader>htc :GhcModTypeClear<cr>
-
 " Vim UI
 syntax on
 
 silent! colorscheme molokai
+
+set number relativenumber
 
 " Pymode Settings (python-mode)
 let g:pymode_lint_ignore = "W503,E402"
@@ -148,6 +143,9 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 :nnoremap K :grep <cword> %:p:h/*<CR>
 :nnoremap gr :grep -R <cword> *<CR>
 :nnoremap GR :grep -R <cword> %:p:h/../*<CR>
+
+" Random helper to comment out with ifdef
+:vmap 0 V'<O#if 0<Esc>'>o#endif<Esc>
 
 " ClangFormat Config
 let g:clang_format#detect_style_file = 1
