@@ -55,7 +55,9 @@ Plugin 'vhdirk/vim-cmake'
 Plugin 'solarnz/thrift.vim'
 
 " Color Schemes
-Plugin 'tomasr/molokai'
+"Plugin 'tomasr/molokai'
+Plugin 'justinmk/vim-syntax-extra'
+Plugin 'flazz/vim-colorschemes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -84,7 +86,7 @@ autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 " Vim UI
 syntax on
 
-silent! colorscheme molokai
+silent! colorscheme default
 
 set number relativenumber
 
