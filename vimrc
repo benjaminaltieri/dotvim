@@ -175,3 +175,6 @@ let s:swiftlicense = s:swiftlicense . "WARRANTIES OF MERCHANTABILITY AND/OR FITN
 let g:DoxygenToolkit_licenseTag = s:swiftlicense
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_paramTag_post = ": "
+
+set exrc
+set secure
