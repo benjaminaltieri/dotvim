@@ -59,6 +59,9 @@ Plugin 'solarnz/thrift.vim'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'flazz/vim-colorschemes'
 
+" Rust
+Plugin 'rust-lang/rust.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
