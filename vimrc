@@ -34,6 +34,7 @@ Plugin 'rhysd/vim-clang-format'
 Plugin 'justmao945/vim-clang'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'w0rp/ale'
+Plugin 'jremmen/vim-ripgrep'
 
 " His holyness tpope
 Plugin 'tpope/vim-fugitive'
@@ -150,9 +151,13 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 :nnoremap K :grep <cword> %:p:h/*<CR>
 :nnoremap gr :grep -R <cword> *<CR>
 :nnoremap GR :grep -R <cword> %:p:h/../*<CR>
+:nnoremap rg :Rg <cword> <CR>
 
 " Random helper to comment out with ifdef
 :vmap 0 V'<O#if 0<Esc>'>o#endif<Esc>
+
+" Another random helper to comment out with C-style
+:vmap * V'<O/*<Esc>'>o*/<Esc>
 
 " ClangFormat Config
 let g:clang_format#detect_style_file = 1
