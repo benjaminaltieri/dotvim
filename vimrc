@@ -180,8 +180,10 @@ let s:swiftlicense = s:swiftlicense . "THIS CODE AND INFORMATION IS PROVIDED \"A
 let s:swiftlicense = s:swiftlicense . "EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED\<enter>"
 let s:swiftlicense = s:swiftlicense . "WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE."
 let g:DoxygenToolkit_licenseTag = s:swiftlicense
-let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_briefTag_pre = "" 
+let g:DoxygenToolkit_briefTag_funcName = "no"
 let g:DoxygenToolkit_paramTag_post = ": "
+let g:DoxygenToolkit_cinoptions = ">-s"
 
 set exrc
 set secure
