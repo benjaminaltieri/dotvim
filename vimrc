@@ -15,7 +15,8 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 
 " Navigation and Code Assistance
-Plugin 'jakedouglas/exuberant-ctags'
+"Plugin 'jakedouglas/exuberant-ctags'
+Plugin 'universal-ctags/ctags'
 Plugin 'taglist.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'd11wtq/ctrlp_bdelete.vim'
@@ -31,17 +32,29 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'godlygeek/tabular'
 Plugin 'janko-m/vim-test'
 Plugin 'rhysd/vim-clang-format'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+"Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'jremmen/vim-ripgrep'
 
 " His holyness tpope
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+
+" All this for formatting...
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 
 " Python
-"Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
-"Plugin 'nvie/vim-flake8'
+Plugin 'nvie/vim-flake8'
 "Plugin 'heavenshell/vim-pydocstring'
 Plugin 'jmcantrell/vim-virtualenv'
 
@@ -65,6 +78,10 @@ Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
+" Needed for code-fmt maktaba
+call glaive#Install()
+
 filetype plugin indent on    " required
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -92,10 +109,14 @@ syntax on
 
 silent! colorscheme default
 
-set number relativenumber
+set number
 
 " Pymode Settings (python-mode)
 let g:pymode_lint_ignore = "W503,E402"
+let g:pymode_rope = 0
+
+" Flake8 remap
+autocmd FileType python map <buffer> <Leader>f :call flake8#Flake8()<CR>
 
 let g:load_doxygen_syntax = 1
 
@@ -133,7 +154,7 @@ set splitright
 let g:NERDTreeMouseMode = 2
 let g:NERDTreeWinSize = 40
 let g:NERDTreeMinimalUI = 1
-let g:NERDTreeUpdateOnWrite = 0
+let g:NERDTreeGitStatusUpdateOnWrite = 0
 
 " Explorer Mappings
 nnoremap <C-n> :NERDTreeToggle<cr>
@@ -157,6 +178,10 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " Another random helper to comment out with C-style
 :vmap * V'<O/*<Esc>'>o*/<Esc>
 
+" Yet another random helper to comment out with hashtags for python
+vnoremap <silent> # :s/^/#/<cr>:noh<cr>
+vnoremap <silent> -# :s/^\s*#//<cr>:noh<cr>
+
 " ClangFormat Config
 let g:clang_format#detect_style_file = 1
 let g:clang_format#enable_fallback_style = 0
@@ -164,8 +189,17 @@ let g:clang_format#enable_fallback_style = 0
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 
+" More for formatting
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+"Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+
+augroup autoformat_settings
+  autocmd FileType python AutoFormatBuffer black
+augroup END
+
 " CtrlP BDelete needs this
-call ctrlp_bdelete#init()
+" call ctrlp_bdelete#init()
 
 " DoxygenToolkit.vim Configuration
 let g:DoxygenToolkit_commentType = "C++"
