@@ -34,6 +34,7 @@ Plugin 'janko-m/vim-test'
 Plugin 'rhysd/vim-clang-format'
 "Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'jremmen/vim-ripgrep'
+Plugin 'junegunn/vim-easy-align'
 
 " His holyness tpope
 Plugin 'tpope/vim-fugitive'
@@ -53,7 +54,7 @@ Plugin 'google/vim-glaive'
 
 " Python
 Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
+Plugin 'python-mode/python-mode'
 Plugin 'nvie/vim-flake8'
 "Plugin 'heavenshell/vim-pydocstring'
 Plugin 'jmcantrell/vim-virtualenv'
@@ -77,7 +78,19 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'rust-lang/rust.vim'
 
 " Go
-Plugin 'fatih/vim-go'
+"Plugin 'fatih/vim-go'
+
+" Terraform
+Plugin 'hashivim/vim-terraform'
+
+" Language Server Protocol
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
+Plugin 'prabirshrestha/asyncomplete.vim'
+Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+
+" AI Overlords
+Plugin 'github/copilot.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -106,6 +119,9 @@ autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 " Special Command for py-docstring
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+" Tabs on go files
+autocmd FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 
 " Vim UI
 syntax on
@@ -201,10 +217,22 @@ augroup autoformat_settings
   autocmd FileType python AutoFormatBuffer black
 augroup END
 
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Common align shortcuts
+xmap g<space> :EasyAlign<CR>*<space><CR>
+xmap g= :EasyAlign<CR>=<CR>
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Go-vim stuff
 let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
-let g:go_metalinter_autosave = 1
+"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gofmt"
+"let g:go_metalinter_autosave = 1
+"let g:go_debug=['lsp']
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -223,6 +251,20 @@ autocmd FileType go nmap <Leader>i <Plug>(go-info)
 
 " CtrlP BDelete needs this
 " call ctrlp_bdelete#init()
+
+" Autocomplete
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+        let col = col('.') - 1
+            return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+      \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " DoxygenToolkit.vim Configuration
 let g:DoxygenToolkit_commentType = "C++"
